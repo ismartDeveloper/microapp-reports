@@ -1,1 +1,1 @@
-
+RUI, a UI developer proficient in Angular and JavaScript, is yet to complete any tasks. Although skilled in modern technologies, RUI encounters difficulties with task completion and adapting to older tools like Revit, jQuery, and Dojo. The limited experience in Java affects understanding of legacy systems
