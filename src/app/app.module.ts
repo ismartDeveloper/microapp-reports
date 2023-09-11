@@ -7,6 +7,7 @@ import { LoadComponent } from './load/load.component';
 import { HomeComponent } from './home/home.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { PopupComponent } from './popup/popup.component';
+import { ValidateComponent } from './validate/validate.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PopupComponent } from './popup/popup.component';
     LoadComponent,
     HomeComponent,
     MultiSelectComponent,
-    PopupComponent
+    PopupComponent,
+    ValidateComponent
   ],
   imports: [
     BrowserModule,
