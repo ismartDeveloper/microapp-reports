@@ -5,11 +5,25 @@
       <th>C</th>
       <th>D</th>
     </tr>
-    <tr *ngFor="let section of sections">
-      <td>
-        {{ section.label }}<br>
-        <strong>{{ section.value }}</strong>
-      </td>
-    </tr>
+    <ng-container *ngFor="let section of sections">
+      <tr>
+        <td>
+          {{ section.labelA }}<br>
+          <strong>{{ section.valueA }}</strong>
+        </td>
+        <td>
+          {{ section.labelB }}<br>
+          <strong>{{ section.valueB }}</strong>
+        </td>
+        <td>
+          {{ section.labelC }}<br>
+          <strong>{{ section.valueC }}</strong>
+        </td>
+        <td>
+          {{ section.labelD }}<br>
+          <strong>{{ section.valueD }}</strong>
+        </td>
+      </tr>
+    </ng-container>
   </table>
   
