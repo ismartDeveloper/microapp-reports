@@ -1,29 +1,20 @@
-<table>
-    <tr>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-    <ng-container *ngFor="let section of sections">
-      <tr>
-        <td>
-          {{ section.labelA }}<br>
-          <strong>{{ section.valueA }}</strong>
-        </td>
-        <td>
-          {{ section.labelB }}<br>
-          <strong>{{ section.valueB }}</strong>
-        </td>
-        <td>
-          {{ section.labelC }}<br>
-          <strong>{{ section.valueC }}</strong>
-        </td>
-        <td>
-          {{ section.labelD }}<br>
-          <strong>{{ section.valueD }}</strong>
-        </td>
-      </tr>
-    </ng-container>
-  </table>
+<div class="container">
+    <!-- Header Row -->
+    <div class="row">
+      <div class="col-md-3">Header A</div>
+      <div class="col-md-3">Header B</div>
+      <div class="col-md-3">Header C</div>
+      <div class="col-md-3">Header D</div>
+    </div>
+  
+    <!-- Data Rows -->
+    <div class="row">
+      <div class="col-md-3" *ngFor="let section of sections">
+        <div class="section">
+          <p>{{ section.label }}</p>
+          <strong>{{ section.value }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
   
