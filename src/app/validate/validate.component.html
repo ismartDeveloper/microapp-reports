@@ -1,9 +1,12 @@
 <div class="container">
     <div class="row">
-      <div class="col-md-3" *ngFor="let column of columnsData">
-        <div class="column">
-          <p class="label">{{ column.label }}</p>
-          <p class="value"><strong>{{ column.value }}</strong></p>
+      <div class="col-md-3" *ngFor="let section of sectionsData">
+        <div class="section">
+          <h4>{{ section.name }}</h4>
+          <ng-container *ngFor="let label of section.labels; let i = index">
+            <p><strong>Label {{ i + 1 }}:</strong> {{ label }}</p>
+            <p><strong>Value {{ i + 1 }}:</strong> {{ section.values[i] }}</p>
+          </ng-container>
         </div>
       </div>
     </div>
