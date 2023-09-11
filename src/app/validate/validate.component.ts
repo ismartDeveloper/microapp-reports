@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./validate.component.scss']
 })
 export class ValidateComponent {
-  columnsData = [
-    { label: 'Label A', value: 'Value A' },
-    { label: 'Label B', value: 'Value B' },
-    { label: 'Label C', value: 'Value C' },
-    { label: 'Label D', value: 'Value D' },
+  sectionsData: any[] = [
+    { name: 'A', labels: ['Label 1', 'Label 2', 'Label 3'], values: ['Value 1', 'Value 2', 'Value 3'] },
+    { name: 'B', labels: ['Label X', 'Label Y'], values: ['Value X', 'Value Y'] },
+    { name: 'C', labels: ['Label ABC'], values: ['Value XYZ'] },
+    { name: 'D', labels: [], values: [] }
   ];
   
   
