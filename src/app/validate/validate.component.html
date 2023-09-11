@@ -1,1 +1,15 @@
-<p>validate works!</p>
+<table>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+    <tr *ngFor="let section of sections">
+      <td>
+        {{ section.label }}<br>
+        <strong>{{ section.value }}</strong>
+      </td>
+    </tr>
+  </table>
+  
