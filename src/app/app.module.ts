@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
 import { PopupComponent } from './popup/popup.component';
 import { ValidateComponent } from './validate/validate.component';
+import { GridComponent } from './grid/grid.component';
+import { AgGridModule } from 'ag-grid-angular'; 
+
 
 @NgModule({
   declarations: [
@@ -16,11 +19,13 @@ import { ValidateComponent } from './validate/validate.component';
     HomeComponent,
     MultiSelectComponent,
     PopupComponent,
-    ValidateComponent
+    ValidateComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgGridModule.with
   ],
   providers: [],
   bootstrap: [AppComponent]

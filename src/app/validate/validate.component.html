@@ -3,12 +3,28 @@
       <div class="col-md-3" *ngFor="let section of sectionsData">
         <div class="section">
           <h4>{{ section.name }}</h4>
-          <ng-container *ngFor="let label of section.labels; let i = index">
-            <p><strong>{{ label }}</strong></p>
-            <p>{{ section.values[i] }}</p>
-          </ng-container>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Header1</th>
+                <th>Header2</th>
+                <th>Header3</th>
+                <th>Header4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let label of section.labels; let i = index">
+                <tr>
+                  <td>{{ label }}</td>
+                  <td>{{ section.values[i] }}</td>
+                  <td>{{ section.labels[i + 1] }}</td>
+                  <td>{{ section.values[i + 1] }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
-  
+   
