@@ -1,29 +1,30 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BehaviorComponent } from './behavior.component';
+import { TestComponent } from '../test/test.component';
+import { YioooComponent } from '../yiooo/yiooo.component';
 
-describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+describe('BehaviorComponent', () => {
+  let fixture: ComponentFixture<BehaviorComponent>;
+  let component: BehaviorComponent;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [BehaviorComponent, TestComponent, YioooComponent],
+    });
+    fixture = TestBed.createComponent(BehaviorComponent);
+    component = fixture.componentInstance;
   });
 
-  it(`should have as title 'microapp-reports'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('microapp-reports');
+  it('should create the BehaviorComponent', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should use <test> and <yiooo> components', () => {
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('microapp-reports app is running!');
+    const compiled = fixture.nativeElement;
+    const testComponent = compiled.querySelector('app-test');
+    const yioooComponent = compiled.querySelector('app-yiooo');
+    expect(testComponent).toBeTruthy();
+    expect(yioooComponent).toBeTruthy();
   });
 });
