@@ -35,4 +35,3 @@ describe('cancelJob', () => {
     expect(component.alertMessage).toBe(errorResponse);
   });
 });
-
