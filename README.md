@@ -1,36 +1,23 @@
 describe('cancelJob', () => {
-  // A spy for the service's cancelJob method
   let cancelJobSpy: jasmine.Spy;
+  let component: YourComponent; // Replace 'YourComponent' with the actual component name
 
   beforeEach(() => {
-    // Arrange: Set up the necessary environment for testing
-    // Create a spy for the service's cancelJob method
     cancelJobSpy = jasmine.createSpy('cancelJob');
+    component = new YourComponent(cancelJobSpy); // Initialize the component
   });
 
-  it('should cancel a job and call getStatusData on success', () => {
-    // Arrange: Create a test row and an instance of the component
+  it('cancels a job and calls getStatusData on success', () => {
     const row = { id: 123 };
-    const component = new YourComponent(cancelJobSpy);
-
-    // Act: Call the cancelJob method
     component.cancelJob(row);
-
-    // Assert: Expectations
     expect(cancelJobSpy).toHaveBeenCalledWith({ scheduledJobId: row.id }, row.id);
   });
 
-  it('should handle errors and set alertMessage', () => {
-    // Arrange: Create a test row and an instance of the component
+  it('handles errors and sets alertMessage', () => {
     const row = { id: 456 };
     const errorResponse = 'Job cancellation failed';
-    const component = new YourComponent(cancelJobSpy);
     cancelJobSpy.and.throwError(errorResponse);
-
-    // Act: Call the cancelJob method
     component.cancelJob(row);
-
-    // Assert: Expectations
     expect(cancelJobSpy).toHaveBeenCalledWith({ scheduledJobId: row.id }, row.id);
     expect(component.alertMessage).toBe(errorResponse);
   });
