@@ -1,43 +1,57 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SectionsComponent } from './sections.component';
-import { SectionDataService } from '../section-data.service'; // Import your service
+import { YourComponent } from './your.component';
+import { ValidateService } from './validate.service';
+import { of } from 'rxjs';
 
-describe('SectionsComponent', () => {
-  let component: SectionsComponent;
-  let fixture: ComponentFixture<SectionsComponent>;
-  let sectionDataService: SectionDataService; // Define a reference to your service
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SectionsComponent],
-      providers: [SectionDataService], // Provide your service
-    }).compileComponents();
-  });
+describe('YourComponent', () => {
+  let component: YourComponent;
+  let fixture: ComponentFixture<YourComponent>;
+  let mockValidateService: jasmine.SpyObj<ValidateService>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SectionsComponent);
+    mockValidateService = jasmine.createSpyObj('ValidateService', ['getSystemErrors']);
+    TestBed.configureTestingModule({
+      declarations: [YourComponent],
+      providers: [{ provide: ValidateService, useValue: mockValidateService }],
+    });
+
+    fixture = TestBed.createComponent(YourComponent);
     component = fixture.componentInstance;
-    sectionDataService = TestBed.inject(SectionDataService); // Inject your service
   });
 
-  it('should create the component', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should load sections data from the service', () => {
-    const mockSectionsData = [
-      {
-        name: 'A',
-        labels: ['Label1', 'Label2'],
-        values: ['Value1', 'Value2'],
+  it('should set dataRunId and systemErrorsData on ngOnInit', () => {
+    // Arrange
+    const fakeData = {
+      data: {
+        getDataRun: {
+          _id: 'fakeId',
+          dataRunResult: {
+            results: [
+              { results: { errors: ['error1'] }, taskId: 'taskId1', taskName: 'taskName1' },
+              { results: { errors: ['error2'] }, taskId: 'taskId2', taskName: 'taskName2' },
+            ],
+            jobId: 'fakeJobId',
+          },
+        },
       },
-      // Add more sample data as needed
-    ];
+    };
 
-    spyOn(sectionDataService, 'getSectionsData').and.returnValue(mockSectionsData); // Mock the service method
+    mockValidateService.getSystemErrors.and.returnValue(of(fakeData));
 
-    fixture.detectChanges(); // Trigger change detection
+    // Act
+    component.ngOnInit();
 
-    expect(component.sectionsData).toEqual(mockSectionsData); // Verify that the component property is populated with mock data
+    // Assert
+    expect(component.dataRunId).toBe('fakeId');
+    expect(component.systemErrorsData).toEqual([
+      {
+        message: JSON.stringify(['error1']),
+        details: { DataRunID: 'fakeId', JobId: 'fakeJobId', TaskName: 'taskName1', TaskId: 'taskId1' },
+      },
+      {
+        message: JSON.stringify(['error2']),
+        details: { DataRunID: 'fakeId', JobId: 'fakeJobId', TaskName: 'taskName2', TaskId: 'taskId2' },
+      },
+    ]);
   });
 });
